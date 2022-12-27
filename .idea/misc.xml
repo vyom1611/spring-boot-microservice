@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/UserAPI/pom.xml" />
         <option value="$PROJECT_DIR$/AccountApi-microservice/pom.xml" />
         <option value="$PROJECT_DIR$/EurekaTut/pom.xml" />
+        <option value="$PROJECT_DIR$/API-Gateway/pom.xml" />
       </list>
     </option>
   </component>

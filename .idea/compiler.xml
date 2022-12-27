@@ -6,19 +6,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="UserAPI" />
         <module name="AccountAPI-microservice" />
+        <module name="API-Gateway" />
+        <module name="UserAPI" />
         <module name="EurekaTut" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AccountAPI-microservice" target="17" />
+      <module name="API-Gateway" target="17" />
       <module name="EurekaTut" target="17" />
       <module name="UserAPI" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="API-Gateway" options="-parameters" />
       <module name="AccountAPI-microservice" options="-parameters" />
       <module name="EurekaTut" options="-parameters" />
       <module name="UserAPI" options="-parameters" />

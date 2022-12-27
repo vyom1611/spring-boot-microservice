@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/API-Gateway/API-Gateway.iml" filepath="$PROJECT_DIR$/API-Gateway/API-Gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/AccountApi-microservice/AccountAPI-microservice.iml" filepath="$PROJECT_DIR$/AccountApi-microservice/AccountAPI-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/EurekaTut/EurekaTut.iml" filepath="$PROJECT_DIR$/EurekaTut/EurekaTut.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserAPI/UserAPI.iml" filepath="$PROJECT_DIR$/UserAPI/UserAPI.iml" />
