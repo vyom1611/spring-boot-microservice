@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AccountApi-microservice/AccountAPI-microservice.iml" filepath="$PROJECT_DIR$/AccountApi-microservice/AccountAPI-microservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EurekaTut/EurekaTut.iml" filepath="$PROJECT_DIR$/EurekaTut/EurekaTut.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserAPI/UserAPI.iml" filepath="$PROJECT_DIR$/UserAPI/UserAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-boot-microservice-4.iml" filepath="$PROJECT_DIR$/.idea/spring-boot-microservice-4.iml" />
+    </modules>
+  </component>
+</project>
