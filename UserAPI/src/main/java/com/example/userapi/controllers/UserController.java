@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UserController {
 
+    @Autowired
     private Environment environment;
 
+    @Autowired
     UserService userService;
 
     @GetMapping("/status")
