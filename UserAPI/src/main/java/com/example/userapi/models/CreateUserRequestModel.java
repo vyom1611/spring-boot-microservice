@@ -53,11 +53,4 @@ public class CreateUserRequestModel {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserEntity userEntity = (UserEntity) o;
-        return Objects.equals(firstName, userEntity.getFirstName()) && Objects.equals(lastName, userEntity.getLastName()) && Objects.equals(email, userEntity.getEmail()) && Objects.equals(password, userEntity.getEncryptedPassword());
-    }
 }

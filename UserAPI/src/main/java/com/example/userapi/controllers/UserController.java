@@ -1,6 +1,7 @@
 package com.example.userapi.controllers;
 
 import com.example.userapi.data.UserEntity;
+import com.example.userapi.models.CreateUserRequestModel;
 import com.example.userapi.models.CreateUserResponseModel;
 import com.example.userapi.services.UserService;
 import com.example.userapi.shared.UserDataTransferObject;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<CreateUserResponseModel> createUser(@Valid @RequestBody UserEntity userDetails) {
+    public ResponseEntity<CreateUserResponseModel> createUser(@Valid @RequestBody CreateUserRequestModel userDetails) {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
