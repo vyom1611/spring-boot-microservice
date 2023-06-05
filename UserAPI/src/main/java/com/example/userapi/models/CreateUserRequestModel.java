@@ -1,9 +1,9 @@
 package com.example.userapi.models;
 
 import com.example.userapi.data.UserEntity;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import java.util.Objects;
 
@@ -19,7 +19,7 @@ public class CreateUserRequestModel {
     private String email;
     @NotNull(message = "Password cannot be empty")
     @Size(min = 6, max=18, message = "Password must be within the range 6 and 18")
-    private String encryptedPassword;
+    private String password;
 
     public String getFirstName() {
         return firstName;
@@ -45,12 +45,12 @@ public class CreateUserRequestModel {
         this.email = email;
     }
 
-    public String getEncryptedPassword() {
-        return encryptedPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -58,6 +58,6 @@ public class CreateUserRequestModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity userEntity = (UserEntity) o;
-        return Objects.equals(firstName, userEntity.getFirstName()) && Objects.equals(lastName, userEntity.getLastName()) && Objects.equals(email, userEntity.getEmail()) && Objects.equals(encryptedPassword, userEntity.getEncryptedPassword());
+        return Objects.equals(firstName, userEntity.getFirstName()) && Objects.equals(lastName, userEntity.getLastName()) && Objects.equals(email, userEntity.getEmail()) && Objects.equals(password, userEntity.getEncryptedPassword());
     }
 }

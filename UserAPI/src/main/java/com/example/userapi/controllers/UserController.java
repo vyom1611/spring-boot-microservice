@@ -1,17 +1,15 @@
 package com.example.userapi.controllers;
 
-import com.example.userapi.data.UserDataTransferObjectRepository;
 import com.example.userapi.data.UserEntity;
 import com.example.userapi.models.CreateUserResponseModel;
 import com.example.userapi.services.UserService;
 import com.example.userapi.shared.UserDataTransferObject;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
