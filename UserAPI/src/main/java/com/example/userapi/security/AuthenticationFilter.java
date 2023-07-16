@@ -10,6 +10,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,21 +31,26 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private Environment environment;
     private IUserService userService;
 
-    public AuthenticationFilter(AuthenticationManager authenticationManager, Environment environment, IUserService userService) {
+    public AuthenticationFilter(IUserService userService, Environment environment, AuthenticationManager authenticationManager) {
         super(authenticationManager);
         this.environment = environment;
         this.userService = userService;
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
         try {
 
-            LoginRequestModel creds = new ObjectMapper().readValue(req.getInputStream(), LoginRequestModel.class);
+            LoginRequestModel creds = new ObjectMapper()
+                    .readValue(request.getInputStream(), LoginRequestModel.class);
 
             return getAuthenticationManager().authenticate(
-                    new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword(), new ArrayList<>()));
+                    new UsernamePasswordAuthenticationToken(
+                            creds.getEmail(),
+                            creds.getPassword(),
+                            new ArrayList<>())
+            );
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -52,23 +58,26 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest req,
-                                            HttpServletResponse res, FilterChain chain,
-                                            Authentication auth) throws IOException, ServletException {
-        String userName = ((User)auth.getPrincipal()).getUsername();
+    protected void successfulAuthentication(
+            HttpServletRequest req, HttpServletResponse res,
+            FilterChain chain, Authentication auth)
+            throws IOException, ServletException {
+
+        String userName = ((User) auth.getPrincipal()).getUsername();
         UserDataTransferObject userDetails = userService.getUserDetailsByEmail(userName);
         String tokenSecret = environment.getProperty("token.secret");
         byte[] secretKeyBytes = Base64.getEncoder().encode(tokenSecret.getBytes());
         SecretKey secretKey = new SecretKeySpec(secretKeyBytes, SignatureAlgorithm.HS512.getJcaName());
 
-        String token = Jwts.builder()
-                .setSubject(userDetails.getUserId())
-                .setExpiration(Date.from(Instant.now().plusMillis(Long.parseLong(environment.getProperty("token.expiration_time")))))
-                .setIssuedAt(Date.from(Instant.now()))
-                .signWith(secretKey, SignatureAlgorithm.HS512)
-                .compact();
+        Instant now = Instant.now();
+
+        String token = Jwts.builder().setSubject(userDetails.getUserId())
+                .setExpiration(
+                        Date.from(now.plusMillis(Long.parseLong(environment.getProperty("token.expiration_time")))))
+                .setIssuedAt(Date.from(now)).signWith(secretKey, SignatureAlgorithm.HS512).compact();
 
         res.addHeader("token", token);
         res.addHeader("userId", userDetails.getUserId());
+
     }
 }

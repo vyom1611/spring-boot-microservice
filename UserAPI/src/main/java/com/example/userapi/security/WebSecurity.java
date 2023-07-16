@@ -45,10 +45,11 @@ public class WebSecurity {
         http.csrf().disable();
 
         http.authorizeHttpRequests()
+                .requestMatchers(HttpMethod.POST, "/**").access(new WebExpressionAuthorizationManager("hasIpAddress('"+environment.getProperty("gateway.ip")+"')"))
                 .requestMatchers(HttpMethod.POST, "/users/**").access(new WebExpressionAuthorizationManager("hasIpAddress('"+environment.getProperty("gateway.ip")+"')"))
                 .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
                 .and()
-                .addFilter(new AuthenticationFilter(authenticationManager, environment, usersService))
+                .addFilter(new AuthenticationFilter(usersService, environment, authenticationManager))
                 .authenticationManager(authenticationManager)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
