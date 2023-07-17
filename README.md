@@ -1,6 +1,6 @@
 # Spring Cloud API Gateway with Netflix Eureka and User API
 
-This application is a simple microservices demo that uses Spring Cloud API Gateway for routing requests, Netflix Eureka for service discovery, and a User API service that handles user-related requests.
+This application is a simple microservices demo that uses Spring Cloud API Gateway for routing requests, Netflix Eureka for service discovery, and a User API service that handles user-related requests for a user management system.
 
 ## Table of Contents
 1. [Features](#features)
@@ -15,6 +15,7 @@ This application is a simple microservices demo that uses Spring Cloud API Gatew
 - API Gateway - A single entry point for all client requests, which then routes requests to appropriate microservices.
 - User API Service - Handles user-related operations, such as creating a new user and user login.
 - Service Discovery - Enables microservices to find and communicate with each other without hardcoding hostname and port.
+- Spring Security - JWT Authentication and Authorization 
 
 ## Technologies Used
 
@@ -29,13 +30,13 @@ Please ensure that you have Java and Maven installed on your machine before you 
 
 Clone the repository:
 
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/vyom1611/spring-boot-microservice.git
 
 
 
 Move into the project directory:
 
-`cd your-repo-name`
+`cd spring-boot-microservice`
 
 
 Build the project:
@@ -47,24 +48,24 @@ Build the project:
 
 Start the Eureka service:
 
-`cd eureka-service
+`cd EurekaTut
 mvn spring-boot:run`
 
 Start the API Gateway:
 
-`cd api-gateway
+`cd API-Gateway
 mvn spring-boot:run`
 
 Start the User API Service:
 
-`cd user-api-service
+`cd UserAPI
 mvn spring-boot:run`
 
 The User API Service can now be accessed via the API Gateway. Here are some example endpoints:
 
 - `http://localhost:8020/users/status` - Checks the status of the User API Service.
-- `http://localhost:8020/users/create` - Creates a new user.
-- `http://localhost:8020/users/login` - Authenticates a user.
+- `http://localhost:8020/user-api-ws/users/create` - Creates a new user.
+- `http://localhost:8020/user-api-ws/login` - Authenticates a user.
 
 ## Contribute
 
